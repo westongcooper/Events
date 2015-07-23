@@ -1,0 +1,22 @@
+<% if current_user %>
+  <%= link_to 'New Venue', new_venue_path %>
+  <%= link_to 'New Event', new_event_path %>
+  <% if current_user.venues.count != 0 %>
+    | <%= link_to 'My Venues', venues_path %>
+  <% end %>
+  <% if current_user.events.count != 0 %>
+    | <%= link_to 'My events', events_path %>
+  <% end %>
+<% end %>
+<br><br><br>
+<% @events.each do|event| %>
+  <%= event.name %> at <%= event.venue.name %>
+  <% if current_user %>
+    <% if current_user.attendances.where(event_id:event.id).count > 0 %>
+      - Attending!- <%= link_to 'unattend', unattend_event_path(:id => event.id) %>
+    <% else %>
+      - <%= link_to 'attend', attend_event_path(:id => event.id) %>
+    <% end %>
+  <% end %>
+  <br>
+<% end %>

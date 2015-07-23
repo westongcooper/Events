@@ -1,0 +1,9 @@
+<% @admin_events.each do |event| %>
+  <%= event.name %>
+    <%= link_to "delete", event, method: "delete" %>
+  <br>
+<% end %>
+<% @events.each do |event| %>
+  <%= event.name %>
+  <br>
+<% end %>
