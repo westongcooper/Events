@@ -28,7 +28,7 @@ class CreateUsers < ActiveRecord::Migration
     end
     create_table :venues do |t|
       t.belongs_to :user, index: true
-      t.string :name
+      t.string :name, null: false
       t.string :info
       t.string :address
       t.string :city

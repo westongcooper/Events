@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150721043832) do
 
   create_table "venues", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name"
+    t.string   "name",       null: false
     t.string   "info"
     t.string   "address"
     t.string   "city"

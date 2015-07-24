@@ -1,1 +1,6 @@
-<%= render 'form' %>
+
+<% if @venues.count > 0 %>
+  <%= render 'form' %>
+<% else %>
+  You must have a venue before you can create an event.
+<% end %>
