@@ -12,5 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap.min
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+    $('.show').click(function(evt) {
+        evt.preventDefault();
+        $.get(this.href,function (code){
+             var divs = $(code).filter(function(){
+                 return $(this).is('name')
+             });
+             divs.each(function() {
+                 $('.event-text').replaceWith('<div class="event-text">' + $(this).html() + '</div>');
+             });
+        });
+    });
+});

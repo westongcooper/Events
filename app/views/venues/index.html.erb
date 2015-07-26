@@ -1,3 +1,4 @@
+<%= link_to 'BACK', :back %><br>
 <% @venues.each do|venue| %>
   <%= venue.name %>
   <%= link_to "delete", venue, method: "delete" %>

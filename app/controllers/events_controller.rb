@@ -2,10 +2,9 @@ class EventsController < ApplicationController
   # before_action :require_user, only: [:new]
   before_action :set_event, only: [:destroy]
   def index
-    @events = current_user.events
+    @events = current_user.attendances.where(admin:false).limit(25)
     @is_admin = Attendance.where(user_id:current_user.id).where(admin:true)
     @admin_events =  current_user.attendances.where(admin:true)
-
   end
   def new
     @event = current_user.events.new
@@ -13,11 +12,15 @@ class EventsController < ApplicationController
   end
   def attend
     Attendance.create(user_id: current_user.id,event_id:params[:id])
-    redirect_to root_path, notice: "you are attending #{params[:id]}"
+    redirect_to :back, notice: "you are attending #{params[:id]}"
+  end
+  def show
+    @event = Event.find(params[:id])
+    @venue = @event.venue
   end
   def unattend
     Attendance.where(user_id: current_user.id).where(event_id:params[:id]).take.destroy
-    redirect_to root_path, notice: "you are not attending #{Event.where(id:params[:id]).name} anymore"
+    redirect_to :back, notice: "you are not attending #{Event.where(id:params[:id]).name} anymore"
   end
   def create
     event = current_user.events.new(event_params)

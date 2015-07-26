@@ -1,9 +1,15 @@
-<% @admin_events.each do |event| %>
-  <%= event.name %>
-    <%= link_to "delete", event, method: "delete" %>
+<%= link_to 'BACK', :back %><br>
+<%= link_to 'New Venue', new_venue_path %><br>
+<%= link_to 'New Event', new_event_path %><br><br>
+<h3>My hosted events:</h3>
+<% @admin_events.each do |attendance| %>
+  <%= attendance.event.name %>
+    <%= link_to "delete", attendance.event, method: "delete", data: { confirm: 'Are you sure?' } %>
   <br>
 <% end %>
-<% @events.each do |event| %>
-  <%= event.name %>
+<br><br>
+<h3>Events I'm going to:</h3>
+<% @events.each do |attending| %>
+  <%= attending.event.name %> | <%= link_to 'unattend', unattend_event_path(:id => attending.event.id) %>
   <br>
 <% end %>
