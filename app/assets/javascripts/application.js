@@ -16,16 +16,21 @@
 //= require turbolinks
 //= require_tree .
 
-$(function() {
-    $('.show').click(function(evt) {
-        evt.preventDefault();
-        $.get(this.href,function (code){
-             var divs = $(code).filter(function(){
-                 return $(this).is('name')
-             });
-             divs.each(function() {
-                 $('.event-text').replaceWith('<div class="event-text">' + $(this).html() + '</div>');
-             });
-        });
-    });
-});
+$(document).ready(ready);
+$(document).on('page:load', ready);
+function ready() {
+    $( function () {
+        $( 'body' ).on( 'click', '.show_event', function ( evt ) {
+            evt.preventDefault();
+            console.log( "click" )
+            $.get( this.href, function ( code ) {
+                var divs = $( code ).filter( function () {
+                    return $( this ).is( 'div#event' )
+                } );
+                divs.each( function () {
+                    $( '.event-text' ).replaceWith( '<div class="event-text">' + $( this ).html() + '</div>' );
+                } );
+            } );
+        } );
+    } );
+}

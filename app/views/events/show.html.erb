@@ -1,9 +1,0 @@
-<%= link_to 'BACK', :back %><br>
-
-<name id="name"><%= @event.name %></name><br>
-<div class="description">
-    <%= simple_format(word_wrap(@event.description,line_width: 60)) %>
-</div><br>
-<%= @venue.name %><br>
-<%= @venue.address %><br>
-<%= @venue.city %><%= @venue.state %>, <%= @venue.zip %>

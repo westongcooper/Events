@@ -1,0 +1,16 @@
+= link_to 'BACK', :back
+#event
+  .panel.panel-default
+    .panel-heading
+      .panel-title
+        = @event.name
+    .panel-body
+      = simple_format(word_wrap(@event.description,line_width: 60))
+    .panel-footer
+      %h4.company_title
+        = @venue.name
+      = @venue.address
+      %br/
+      = @venue.city
+      = @venue.state
+      = @venue.zip

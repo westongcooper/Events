@@ -29,28 +29,36 @@ ActiveRecord::Schema.define(version: 20150721043832) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "venue_id"
-    t.string   "name",        null: false
+    t.string   "name",               null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.text     "description"
     t.date     "start_date"
     t.time     "start_time"
     t.date     "end_date"
     t.time     "end_time"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_index "events", ["venue_id"], name: "index_events_on_venue_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",      null: false
-    t.string   "last_name",       null: false
-    t.string   "email",           null: false
-    t.string   "nickname",        null: false
+    t.string   "first_name",          null: false
+    t.string   "last_name",           null: false
+    t.string   "email",               null: false
+    t.string   "nickname",            null: false
     t.string   "info"
     t.string   "password_digest"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.text     "bio"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "venues", force: :cascade do |t|

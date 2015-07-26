@@ -1,0 +1,7 @@
+= link_to 'Previous page', page: @pages[:page] - 1 unless @pages[:page] <= 1
+= link_to 'Next page', page: @pages[:page] + 1 unless @pages[:page] >= @pages[:last_page]
+%span
+  page:
+  = @pages[:page]
+  out of
+  = @pages[:last_page]

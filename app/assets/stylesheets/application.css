@@ -36,13 +36,30 @@
  */
 body{
     background: darkgray;
+    max-width: 1200px;
+    margin:auto;
 }
 .all-events{
     width: 500px;
     margin-left:20px;
+    margin-bottom:20px;
 }
 .event-info{
     position:fixed;
-    top: 100px;
-    right: 200px;
+    top: 164px;
+    right: 175px;
+}
+h4.company_title{
+    margin:0px;
+    padding:0px;
+}
+.event-info{
+    min-width:600px;
+}
+.panel{
+    margin:0px;
+}
+
+.index_events{
+    margin:20px;
 }

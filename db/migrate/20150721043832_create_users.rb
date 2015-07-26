@@ -7,12 +7,14 @@ class CreateUsers < ActiveRecord::Migration
       t.string :nickname, null: false
       t.string :info
       t.string :password_digest
+      #t.attachment :avatar
       t.text :bio
       t.timestamps null: false
     end
     create_table :events do |t|
       t.belongs_to :venue, index: true
       t.string :name, null: false
+      #t.attachment :image
       t.text :description
       t.date :start_date
       t.time :start_time
