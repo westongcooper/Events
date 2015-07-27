@@ -4,7 +4,8 @@
 <h3>My hosted events:</h3>
 <% @admin_events.each do |attendance| %>
   <%= attendance.event.name %>
-    <%= link_to "delete", attendance.event, method: "delete", data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'edit',edit_event_path(id:attendance.event.id) %>
+  <%= link_to "delete", attendance.event, method: "delete", data: { confirm: 'Are you sure?' } %>
   <br>
 <% end %>
 <br><br>

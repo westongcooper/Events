@@ -10,7 +10,7 @@ attendances = []
                   password_digest:"#{n}",
                   bio:Faker::Lorem.sentence(30))
   tempusers << u.id
-  if (1..100) === n
+  if (1..50) === n
     v = u.venues.create(name:Faker::Company.name,
                         info:Faker::Company.bs,
                         address:Faker::Address.street_address,
@@ -21,7 +21,8 @@ attendances = []
     20.times do
       e = u.events.create(venue_id:v.id,
                           name:Faker::Commerce.product_name,
-                          description:Faker::Lorem.sentence(50))
+                          description:Faker::Lorem.sentence(50),
+                          created_at:Faker::Time.between(DateTime.now - 2, DateTime.now - 1))
       tempevents << e.id
       at = Attendance.where(user_id:u.id).where(event_id:e.id).take
       at.admin = true

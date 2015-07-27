@@ -1,0 +1,39 @@
+<% if current_user %>
+  <%= link_to 'New Venue', new_venue_path %>
+  <%= link_to 'New Event', new_event_path %>
+  <% if current_user.has_venues %>
+    | <%= link_to 'My Venues', venues_path %>
+  <% end %>
+  <% if current_user.has_events %>
+    | <%= link_to 'My events', events_path %>
+  <% end %>
+<% end %>
+<br><br>
+<h2 class="title">All Events</h2>
+<div class="all-events">
+    <% @events.each do|event| %>
+      <div class="panel panel-default">
+          <div class="panel-body">
+              <div class="<%= event.id %>">
+                  <%= event.name %> at <%= event.venue.name %> <%= link_to 'more_info', event_path(id:event.id), class: "show" %>
+                  <% if current_user %>
+                    <% if current_user.attending(event) %>
+                      - Attending! - <%= link_to 'unattend', unattend_event_path(id:event.id) %>
+                    <% else %>
+                      - <%= link_to 'attend', attend_event_path(:id => event.id) %>
+                    <% end %>
+                  <% end %>
+                  <br>
+              </div>
+          </div>
+      </div>
+    <% end %>
+</div>
+<br>
+<div class="event-info">
+  <div class="panel"><div class="event-text"></div></div>
+</div>
+<%= link_to 'Previous page', page: @pages[:page] - 1 unless @pages[:page] <= 1%>
+<%= link_to 'Next page', page: @pages[:page] + 1 unless @pages[:page] >= @pages[:last_page]%><br>
+page: <%= @pages[:page] %> out of <%= @pages[:last_page] %>
+
