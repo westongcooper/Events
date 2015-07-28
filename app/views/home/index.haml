@@ -26,10 +26,10 @@
               - if current_user
                 - if current_user.attending(event)
                   %span Attending! -
-                  = link_to 'unattend', unattend_event_path(id:event.id)
+                  = link_to 'unattend', unattend_event_path(id:event.id),class:"unattend_#{event.id} unattend"
                 - else
                   %span
-                    = link_to 'attend', attend_event_path(id:event.id)
+                    = link_to 'attend', attend_event_path(id:event.id),class:"attend_#{event.id} attend"
   = render 'pages'
 .event-info
   .event-text

@@ -22,6 +22,7 @@ function ready() {
     $( function () {
         $( 'body' ).on( 'click', '.show_event', function ( evt ) {
             evt.preventDefault();
+            console.log(this.href);
             $.get( this.href, function ( code ) {
                 var divs = $( code ).filter( function () {
                     return $( this ).is( 'div#event' )
@@ -40,8 +41,7 @@ function ready2() {
     $( function () {
         $( 'body' ).on( 'click', '.next_page', function ( evt ) {
             evt.preventDefault();
-            console.log('click');
-            console.log( this );
+            console.log(this.href);
             $.get( this.href, function ( code ) {
                 var next_page = $(code).filter('#page_content');
                 $( '.page' ).replaceWith( next_page);
@@ -55,12 +55,41 @@ function ready3() {
     $( function () {
         $( 'body' ).on( 'click', '.prev_page', function ( evt ) {
             evt.preventDefault();
-            console.log('click');
-            console.log( this );
+            console.log(this.href);
             $.get( this.href, function ( code ) {
                 var next_page = $(code).filter('#page_content');
                 $( '.page' ).replaceWith( next_page);
             } );
         } );
     } );
-};
+}
+
+
+    $( function () {
+        $( 'body' ).on( 'click', '.attend', function ( evt ) {
+            evt.preventDefault();
+            var event = $.urlParam('id',this.href);
+            $.get( this.href, function ( code ) {
+                //var next_page = $(code).filter('#page_content');
+                $( '.attend_'+ event ).replaceWith("<a class='unattend' href='/unattend_event?id=" + event + "'>unattend</a>");
+            } );
+        } );
+    } );
+
+
+
+    $( function () {
+        $( 'body' ).on( 'click', '.unattend', function ( evt ) {
+            evt.preventDefault();
+            var event = $.urlParam('id',this.href);
+            $.get( this.href, function ( code ) {
+                //var next_page = $(code).filter('#page_content');
+                $( '.unattend'+ event ).replaceWith("<a class='attend' href='/attend_event?id=" + event + "'>attend</a>");
+            } );
+        } );
+    } );
+
+$.urlParam = function(name,url){
+    var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(url);
+    return results[1] || 0;
+}
