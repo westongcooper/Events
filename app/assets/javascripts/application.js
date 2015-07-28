@@ -84,7 +84,7 @@ function ready3() {
             var event = $.urlParam('id',this.href);
             $.get( this.href, function ( code ) {
                 //var next_page = $(code).filter('#page_content');
-                $( '.unattend'+ event ).replaceWith("<a class='attend' href='/attend_event?id=" + event + "'>attend</a>");
+                $( '.unattend_'+ event ).replaceWith("<a class='attend' href='/attend_event?id=" + event + "'>attend</a>");
             } );
         } );
     } );
