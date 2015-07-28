@@ -71,7 +71,7 @@ function ready3() {
             var event = $.urlParam('id',this.href);
             $.get( this.href, function ( code ) {
                 //var next_page = $(code).filter('#page_content');
-                $( '.attend_'+ event ).replaceWith("<a class='unattend unattend_" + event " + "' href='/unattend_event?id=" + event + "'>unattend</a>");
+                $( '.attend_'+ event ).replaceWith("<a class='unattend unattend_" + event  + "' href='/unattend_event?id=" + event + "'>unattend</a>");
             } );
         } );
     } );
@@ -84,7 +84,7 @@ function ready3() {
             var event = $.urlParam('id',this.href);
             $.get( this.href, function ( code ) {
                 //var next_page = $(code).filter('#page_content');
-                $( '.unattend_'+ event ).replaceWith("<a class='attend attend_" + event " + "' href='/attend_event?id=" + event + "'>attend</a>");
+                $( '.unattend_'+ event ).replaceWith("<a class='attend attend_" + event  + "' href='/attend_event?id=" + event + "'>attend</a>");
             } );
         } );
     } );
