@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   end
   def attend
     Attendance.create(user_id: current_user.id,event_id:params[:id])
-    redirect_to :back, notice: "you are attending #{params[:id]}"
+    redirect_to :back, notice: "you are attending #{Event.find(params[:id]).name}"
   end
   def show
     @event = Event.find(params[:id])
@@ -23,12 +23,11 @@ class EventsController < ApplicationController
   end
   def unattend
     Attendance.where(user_id: current_user.id).where(event_id:params[:id]).take.destroy
-    redirect_to :back, notice: "you are not attending #{Event.where(id:params[:id]).name} anymore"
+    redirect_to :back, notice: "you are not attending #{Event.find(params[:id]).name} anymore"
   end
   def create
-    event = current_user.events.new(event_params)
     respond_to do |format|
-      if current_user.save
+      if event = current_user.events.create(event_params)
         attending = Attendance.where(user_id:current_user.id).where(event_id:event.id).take
         attending.admin = true
         attending.save

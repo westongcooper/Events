@@ -1,36 +1,39 @@
 - if current_user
-  = link_to 'New Venue', new_venue_path
-  = link_to 'New Event', new_event_path
+  = link_to 'New Venue', new_venue_path, class:"btn"
+  = link_to 'New Event', new_event_path, class:"btn"
   - if current_user.has_venues
-    = link_to 'My Venues', venues_path
+    = link_to 'My Venues', venues_path, class:"btn"
   - if current_user.has_events
-    = link_to 'My events', events_path
+    = link_to 'My events', events_path, class:"btn"
 %br/
 %h2.title All Events
-= render 'pages'
-.all-events
-  - @events.each do|event|
-    .panel.panel-default.index_events
-      .avatar
-        = image_tag "https://placekitten.com/g/96/140"
-      %div{class:"event_#{event.id}"}
-        .panel-heading
-          .panel-title
-            #{event.name}
-        .panel-body
-          @ #{event.venue.name}
-          .event_buttons
-            %span
-              = link_to 'more_info', event_path(id:event.id), class: "show_event"
-            - if current_user
-              - if current_user.attending(event)
-                %span Attending! -
-                = link_to 'unattend', unattend_event_path(id:event.id)
-              - else
-                %span
-                  = link_to 'attend', attend_event_path(id:event.id)
+.page#page_content
+  = render 'pages'
+  .all-events#event_list
+    - @events.each do|event|
+      .panel.panel-default.index_events
+        .avatar
+          = image_tag "https://placekitten.com/g/96/140"
+        %div{class:"event_#{event.id}"}
+          .panel-heading
+            .panel-title
+              #{event.name}
+          .panel-body
+            @ #{event.venue.name}
+            .event_buttons
+              %span
+                = link_to 'more_info', event_path(id:event.id), class: "show_event"
+              - if current_user
+                - if current_user.attending(event)
+                  %span Attending! -
+                  = link_to 'unattend', unattend_event_path(id:event.id)
+                - else
+                  %span
+                    = link_to 'attend', attend_event_path(id:event.id)
+  = render 'pages'
 .event-info
   .event-text
-= render 'pages'
+
+.bottom
 
 

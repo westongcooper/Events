@@ -22,14 +22,44 @@ function ready() {
     $( function () {
         $( 'body' ).on( 'click', '.show_event', function ( evt ) {
             evt.preventDefault();
-            console.log( "click" )
             $.get( this.href, function ( code ) {
                 var divs = $( code ).filter( function () {
                     return $( this ).is( 'div#event' )
                 } );
+                console.log(divs);
                 divs.each( function () {
                     $( '.event-text' ).replaceWith( '<div class="event-text">' + $( this ).html() + '</div>' );
                 } );
+            } );
+        } );
+    } );
+};
+$(document).ready(ready2);
+$(document).on('page:load', ready2);
+function ready2() {
+    $( function () {
+        $( 'body' ).on( 'click', '.next_page', function ( evt ) {
+            evt.preventDefault();
+            console.log('click');
+            console.log( this );
+            $.get( this.href, function ( code ) {
+                var next_page = $(code).filter('#page_content');
+                $( '.page' ).replaceWith( next_page);
+            } );
+        } );
+    } );
+};
+$(document).ready(ready3);
+$(document).on('page:load', ready3);
+function ready3() {
+    $( function () {
+        $( 'body' ).on( 'click', '.prev_page', function ( evt ) {
+            evt.preventDefault();
+            console.log('click');
+            console.log( this );
+            $.get( this.href, function ( code ) {
+                var next_page = $(code).filter('#page_content');
+                $( '.page' ).replaceWith( next_page);
             } );
         } );
     } );

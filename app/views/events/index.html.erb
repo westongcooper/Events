@@ -1,16 +1,16 @@
-<%= link_to 'BACK', :back %><br>
-<%= link_to 'New Venue', new_venue_path %><br>
-<%= link_to 'New Event', new_event_path %><br><br>
+<%= link_to 'BACK', :back, class:"btn" %>
+<%= link_to 'New Venue', new_venue_path, class:"btn" %>
+<%= link_to 'New Event', new_event_path, class:"btn" %><br><br>
 <h3>My hosted events:</h3>
 <% @admin_events.each do |attendance| %>
   <%= attendance.event.name %>
-    <%= link_to 'edit',edit_event_path(id:attendance.event.id) %>
-  <%= link_to "delete", attendance.event, method: "delete", data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'edit',edit_event_path(id:attendance.event.id),class:"btn" %>
+  <%= link_to "delete", attendance.event, method: "delete", class:"btn",data: { confirm: 'Are you sure?' } %>
   <br>
 <% end %>
 <br><br>
 <h3>Events I'm going to:</h3>
 <% @events.each do |attending| %>
-  <%= attending.event.name %> | <%= link_to 'unattend', unattend_event_path(:id => attending.event.id) %>
+  <%= attending.event.name %> | <%= link_to 'unattend', unattend_event_path(:id => attending.event.id), class:"btn" %>
   <br>
 <% end %>
