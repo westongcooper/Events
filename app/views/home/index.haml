@@ -32,8 +32,10 @@
                     = link_to 'attend', attend_event_path(id:event.id),class:"attend_#{event.id} attend"
   = render 'pages'
 .event-info
+  - flash.each do |name, msg|
+    = content_tag :div, msg, class: name
   .event-text
 
-.bottom
+
 
 
